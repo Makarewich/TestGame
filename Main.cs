@@ -14,6 +14,7 @@ public class Main : MonoBehaviour
     public Vector3 SpawnBox;
     public float TouchStartX, TouchX;
     private int Shots, MaxSpawnBox = 1, RandAd;
+    private float MaxPosX, MinPosX;
     public int Score, BestScore;
     public Text ScoreTxt, BestTxt, PlayText;
     public LineRenderer Aim; 
@@ -47,13 +48,13 @@ public class Main : MonoBehaviour
             }
             if (Input.GetMouseButton(0) && Aim.gameObject.activeSelf)
             {
-                    if (TouchX > -1.57f && TouchX < 1.57f)
+                    if (TouchX > MinPosX && TouchX < MaxPosX, )
                     {
                         TouchX = (Input.mousePosition.x - TouchStartX) / 150;
 
                     }
-                    else if (TouchX > 1.57f) TouchX = 1.56f;
-                    else if (TouchX < -1.57f) TouchX = -1.56f;
+                    else if (TouchX > MaxPosX, ) TouchX = MaxPosX  - 0.01f;
+                    else if (TouchX < MinPosX) TouchX = MinPosX  + 0.01f;
             }
             if (Input.GetMouseButtonUp(0) && Aim.gameObject.activeSelf)
             {
@@ -65,8 +66,8 @@ public class Main : MonoBehaviour
             }
             if (NewSpawn)
             {
-                if (TouchX > 1.57f) TouchX = 1.56f;
-                if (TouchX < -1.57f) TouchX = -1.56f;
+                if (TouchX > MaxPosX, ) TouchX = MaxPosX  - 0.01f;
+                if (TouchX < MinPosX) TouchX = MinPosX  + 0.01f;
                 MainBox = Instantiate(Boxes[Random.Range(0, MaxSpawnBox)], new Vector3(TouchX, 0, 0), Quaternion.identity);
                 MainBox.GetComponent<CubeThrow>().PushObj = true;
                 NewSpawn = false;
