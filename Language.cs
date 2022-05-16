@@ -52,8 +52,6 @@ public class Language : MonoBehaviour
         json = File.ReadAllText(Application.streamingAssetsPath + "/" + PlayerPrefs.GetString("Lang") + ".json");
             lan = JsonUtility.FromJson<lang>(json);
     #endif
-        //json = File.ReadAllText(Application.streamingAssetsPath +"/"+ PlayerPrefs.GetString("Lang") + ".json");
-        //lan = JsonUtility.FromJson<lang>(json);
     }
     public class lang
     {
